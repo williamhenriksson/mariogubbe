@@ -16,6 +16,7 @@ while run:
     pygame.draw.rect(screen, (255, 255, 255), player)
     key = pygame.key.get_pressed()
     if key[pygame.K_a] == True:
+
     for event in pygame.event.get():
         if event.type == event.QUIT:
             run = false
