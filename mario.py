@@ -20,7 +20,7 @@ X_POSITION, Y_POSITION = 400, 660
 mario_rect = Standing_ground.get_rect(center=(X_POSITION, Y_POSITION))
 
 # vad som gör så att marios hopp blir bra
-Y_gravity = 0.5
+Y_gravity = 0.7
 Jump_height = 15
 Y_velocity = 0
 
