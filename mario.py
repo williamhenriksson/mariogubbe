@@ -1,39 +1,40 @@
 import pygame
 
+
 # initiera pygame
 pygame.init()
 
 #laddar in bilderna som används till spelet
 Standing_ground = pygame.transform.scale(pygame.image.load("C:/Users/WilliamHenriksson/PycharmProjects/pythonProject4/mario.png"), (48, 64))
 Jumping_ground = pygame.transform.scale(pygame.image.load("C:/Users/WilliamHenriksson/PycharmProjects/PythonProject4/Jumping_mario.png"), (48, 64))
-Background = pygame.transform.scale(pygame.image.load("C:/Users/WilliamHenriksson/PycharmProjects/PythonProject4/Mario_background.jpg"), (800,361))
-
-# Framerate
+Background = pygame.transform.scale(pygame.image.load("C:/Users/WilliamHenriksson/PycharmProjects/PythonProject4/Mario_background.jpg"), (800, 361))
+# klocka så att skärmen refreshas
 CLOCK = pygame.time.Clock()
 #hur stor skärmen ska vara
 screen_width = 800
 screen_height = 362
 screen = pygame.display.set_mode((screen_width, screen_height))
 #x oxh y koordinater
-X_POSITION, Y_POSITION = 400, 660
+X_POSITION_mario, Y_POSITION_mario = 400, 660
 
 # Så att mario står där han ska när han blir inlagd
-mario_rect = Standing_ground.get_rect(center=(X_POSITION, Y_POSITION))
+mario_rect = Standing_ground.get_rect(center=(X_POSITION_mario, Y_POSITION_mario))
 
 # vad som gör så att marios hopp blir bra
 Y_gravity = 0.7
 Jump_height = 15
 Y_velocity = 0
 
-# run är sant så spelet körs
+# run är sant så spelet körs och bilderna kommer upp på skärmen
 run = True
 
 #rörelse
 while run:
     screen.blit(Background, (0, 0))
 
+    # kollar vilka tangenter som blivit och blir tryckta
     key = pygame.key.get_pressed()
-    #rörelse för framåt och bakåt
+    # Justerar spelarens position efter vilka tangenter som trycks
     if key[pygame.K_a]:
         mario_rect.x -= 5
     if key[pygame.K_d]:
@@ -64,6 +65,12 @@ while run:
             run = False
     #vilken framerate spelet ska ha
     CLOCK.tick(60)
+    print(mario_rect.x)
+    """Border Collision"""
+    if mario_rect.x < 0:
+        mario_rect.x = 0
+    if mario_rect.x >= 750:
+        mario_rect.x = 750
 
 
 pygame.quit()
