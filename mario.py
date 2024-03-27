@@ -20,7 +20,7 @@ X_POSITION_mario, Y_POSITION_mario = 400, 660
 # Så att mario står där han ska när han blir inlagd
 mario_rect = Standing_ground.get_rect(center=(X_POSITION_mario, Y_POSITION_mario))
 
-# vad som gör så att marios hopp blir bra
+# vad som gör så att marios hopp åker upp och ner på rätt sätt
 Y_gravity = 0.7
 Jump_height = 15
 Y_velocity = 0
