@@ -76,44 +76,44 @@ while run:
         screen.blit(Game_over, (800, 362))
         screen.blit(Game_over_text, (0, 0))
 
-    # kollar vilka tangenter som blivit och blir tryckta
+# kollar vilka tangenter som blivit och blir tryckta
     key = pygame.key.get_pressed()
-    # Justerar spelarens position efter vilka tangenter som trycks
+# Justerar spelarens position efter vilka tangenter som trycks
     if key[pygame.K_a]:
         mario_rect.x -= 4
     if key[pygame.K_d]:
         mario_rect.x += 4
 
 # rörelse för hopp ( mario )
-if key[pygame.K_SPACE]:
-    if mario_rect.y == 250:
-        Y_velocity = -Jump_height
+    if key[pygame.K_SPACE]:
+        if mario_rect.y == 250:
+            Y_velocity = -Jump_height
 
 # Så att mario inte bara flyger iväg när nam hoppar och att han flyger upp som han ska
-Y_velocity += Y_gravity
-mario_rect.y += Y_velocity
+    Y_velocity += Y_gravity
+    mario_rect.y += Y_velocity
 
 # Sätter en maxhöjd på marios hopp och när den uppnås slutar han gå uppåt
-if mario_rect.y > 250:
-    mario_rect.y = 250
-    Y_velocity = 0
+    if mario_rect.y > 250:
+        mario_rect.y = 250
+        Y_velocity = 0
 
 # gör så att rätt bild på mario blir inlagd när
-if mario_rect.y == 250:
-    screen.blit(Standing_ground, mario_rect)
+    if mario_rect.y == 250:
+        screen.blit(Standing_ground, mario_rect)
 
 # Annars ska mariobilden vara hopp bilden
-else:
-    screen.blit(Jumping_ground, mario_rect)
+    else:
+        screen.blit(Jumping_ground, mario_rect)
 
 # Så att displayen uppdateras och bilderna inte bara är där
-pygame.display.update()
+    pygame.display.update()
 # så att pygame avslutas
-for event in pygame.event.get():
-    if event.type == pygame.QUIT:
-        run = False
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            run = False
 # vilken framerate spelet ska ha
-CLOCK.tick(60)
+    CLOCK.tick(60)
 print(mario_rect.x)
 """Border Collision"""
 if mario_rect.x < 0:
