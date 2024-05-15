@@ -1,4 +1,5 @@
 import pygame
+import random
 
 # initiera pygame
 pygame.init()
@@ -33,6 +34,10 @@ Border_edge_l = 0
 Border_edge_r = 750
 Goomba_edge_l = -60
 Goomba_edge_r = 800
+Coin_edge_l = 50
+Coin_edge_r = 600
+Coin_edge_upp = 90
+Coin_edge_down = 270
 # hur stor skärmen ska vara
 
 screen = pygame.display.set_mode((800, 362))
@@ -40,7 +45,7 @@ screen = pygame.display.set_mode((800, 362))
 # x oxh y koordinater
 X_POSITION_MARIO, Y_POSITION_MARIO = 400, 362
 X_POSITION_ENEMY, Y_POSITION_ENEMY = 700, 300
-Coin_spawn_x, Coin_spawn_y = 500, 130
+Coin_position_x, Coin_position_y = 500, 130
 # Så att mario och enemy står där han ska när han blir inlagd
 mario_rect = Standing_ground.get_rect(center=(X_POSITION_MARIO, Y_POSITION_MARIO))
 Enemy_rect = enemy_image.get_rect(center=(X_POSITION_ENEMY, Y_POSITION_ENEMY))
@@ -78,7 +83,7 @@ while run:
     # Så att bilder på bakgrunden och enemy uppdateras
     screen.blit(Background, (0, 0))
     screen.blit(enemy_image, (Enemy_rect.x, Enemy_rect.y))
-    screen.blit(Coin_image, (Coin_spawn_x, Coin_spawn_y))
+    screen.blit(Coin_image, (Coin_position_x, Coin_position_y))
     # Justerar spelarens position efter vilka tangenter som trycks
     if key[pygame.K_a]:
         mario_rect.x -= Walking_speed
@@ -92,6 +97,9 @@ while run:
     # Så att mario inte bara flyger iväg när nam hoppar och att han flyger upp som han ska
     Y_velocity += Y_gravity
     mario_rect.y += Y_velocity
+    if Coin_position_x + 10 > mario_rect.x > Coin_position_x - 40 and Coin_position_y + 20 > mario_rect.y > Coin_position_y - 30:
+        Coin_position_x = random.randrange(Coin_edge_l, Coin_edge_r)
+        Coin_position_y = random.randrange(Coin_edge_upp, Coin_edge_down)
 
     # Sätter en maxhöjd på marios hopp och när den uppnås slutar han gå uppåt
     if mario_rect.y > Mario_max_height:
