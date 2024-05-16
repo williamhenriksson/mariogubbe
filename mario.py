@@ -34,8 +34,8 @@ Border_edge_l = 0
 Border_edge_r = 750
 Goomba_edge_l = -60
 Goomba_edge_r = 800
-Coin_edge_l = 50
-Coin_edge_r = 600
+Coin_edge_l = 25
+Coin_edge_r = 700
 Coin_edge_upp = 90
 Coin_edge_down = 270
 # hur stor skärmen ska vara
@@ -73,7 +73,7 @@ run = True
 
 # konstant till att någon rör säg i en speciell hastighet
 
-direction = -1
+direction = -1.8
 # hela run loopen så spelet går
 while run:
     # kollar vilka tangenter som blivit och blir tryckta
@@ -118,7 +118,7 @@ while run:
     Enemy_rect.x += direction
     # så att gubben rör sig tills hans x kordinat är -60 i -1 i direction
     if Enemy_rect.x >= Goomba_edge_l:
-        direction = -1
+        direction = -1.8
     else:
         Enemy_rect.x = Goomba_edge_r
 
