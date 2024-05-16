@@ -112,22 +112,22 @@ def handle_game_over(Mario_dead, key, mario_rect, Enemy_rect, direction):
     return key, mario_rect, Enemy_rect, direction
 
 # En funktion för att dö när man går in i goomba 2
-def handle_game_over_2(Mario_dead, key, mario_rect, Enemy_rect_2, direction):
+def handle_game_over_2(Mario_dead, key, mario_rect, Enemy_rect_2, direction_2):
     if Mario_dead:
         key = None
         mario_rect.x = mario_rect.x
-        Enemy_rect.x = Enemy_rect.x
-        direction = 0
-    return key, mario_rect, Enemy_rect_2, direction
+        Enemy_rect_2.x = Enemy_rect_2.x
+        direction_2 = 0
+    return key, mario_rect, Enemy_rect_2, direction_2
 
 # En funktion för att dö när man går in i goomba 3
-def handle_game_over_3(Mario_dead, key, mario_rect, Enemy_rect_3, direction):
+def handle_game_over_3(Mario_dead, key, mario_rect, Enemy_rect_3, direction_3):
     if Mario_dead:
         key = None
         mario_rect.x = mario_rect.x
-        Enemy_rect.x = Enemy_rect.x
-        direction = 0
-    return key, mario_rect, Enemy_rect_3, direction
+        Enemy_rect_3.x = Enemy_rect_3.x
+        direction_3 = 0
+    return key, mario_rect, Enemy_rect_3, direction_3
 
 # run är sant så spelet körs och bilderna kommer upp på skärmen
 run = True
@@ -143,8 +143,8 @@ while run:
     key = pygame.key.get_pressed()
 
     key, mario_rect, Enemy_rect, direction = handle_game_over(Mario_dead, key, mario_rect, Enemy_rect, direction)
-    key, mario_rect, Enemy_rect_2, direction = handle_game_over(Mario_dead, key, mario_rect, Enemy_rect_2, direction)
-    key, mario_rect, Enemy_rect_3, direction = handle_game_over(Mario_dead, key, mario_rect, Enemy_rect_3, direction)
+    key, mario_rect, Enemy_rect_2, direction_2 = handle_game_over(Mario_dead, key, mario_rect, Enemy_rect_2, direction_2)
+    key, mario_rect, Enemy_rect_3, direction_3 = handle_game_over(Mario_dead, key, mario_rect, Enemy_rect_3, direction_3)
 
     # Så att bilder på bakgrunden och enemy uppdateras
 
@@ -199,7 +199,7 @@ while run:
     if Score >= 20:
         screen.blit(enemy_image, (Enemy_rect_3.x, Enemy_rect_3.y))
         Enemy_rect_3.x += direction_3
-        if Enemy_rect_2.x + Enemy_disposition_x >= mario_rect.x >= Enemy_rect_3.x - Enemy_disposition_x and Enemy_rect_3.y + Enemy_disposition_y_upp >= mario_rect.y >= Enemy_rect_3.y - Enemy_disposition_y_down:
+        if Enemy_rect_3.x + Enemy_disposition_x >= mario_rect.x >= Enemy_rect_3.x - Enemy_disposition_x and Enemy_rect_3.y + Enemy_disposition_y_upp >= mario_rect.y >= Enemy_rect_3.y - Enemy_disposition_y_down:
             Mario_dead = True
             Standing_ground.fill(Transparent)
             Background.fill(Transparent)
@@ -207,7 +207,9 @@ while run:
             screen.blit(Death_image, mario_rect)
             screen.blit(Game_over, (800, 362))
             screen.blit(Game_over_text, (0, 0))
+
     # Sätter en maxhöjd på marios hopp och när den uppnås slutar han gå uppåt
+
     if mario_rect.y > Mario_max_height:
         mario_rect.y = Mario_max_height
         Y_velocity = 0

@@ -146,7 +146,7 @@ while run:
     if Score > 20:
         screen.blit(enemy_image, (Enemy_rect_3.x, Enemy_rect_3.y))
         Enemy_rect_3.x += direction_3
-        if Enemy_rect_2.x + 20 >= mario_rect.x >= Enemy_rect_3.x - 20 and Enemy_rect_3.y + 30 >= mario_rect.y >= Enemy_rect_3.y - 40:
+        if Enemy_rect_3.x + 20 >= mario_rect.x >= Enemy_rect_3.x - 20 and Enemy_rect_3.y + 30 >= mario_rect.y >= Enemy_rect_3.y - 40:
             Mario_dead = True
             Standing_ground.fill(Transparent)
             Background.fill(Transparent)
